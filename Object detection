@@ -1,0 +1,61 @@
+import os
+from PIL import Image
+import shutil
+
+# Resize all images to a consistent size (optional)
+def resize_images(image_dir, size=(640, 640)):
+    for file in os.listdir(image_dir):
+        if file.endswith(('.jpg', '.png', '.jpeg')):
+            img_path = os.path.join(image_dir, file)
+            img = Image.open(img_path).convert('RGB')
+            img = img.resize(size)
+            img.save(img_path)
+
+# Apply to all image folders
+for subdir in ['images/train', 'images/val'']:
+    resize_images(f'/content/drive/MyDrive/object(yolo)')
+ 
+ data_yaml = """
+path: '/content/drive/MyDrive/currency(yolo)'  # Dataset root path
+train: train/images
+val: val/images  # Changed from valid to val
+nc: 8
+names: ['chair', 'table', 'door', 'window', 'cupboard', 'people', 'background']
+"""
+# Save the YAML file to the correct location
+with open('/content/drive/MyDrive/object(yolo)/data.yaml', 'w') as f:
+    f.write(data_yaml) 
+!pip install ultralytics
+
+from ultralytics import YOLO
+
+# Load a pre-trained heavyweight model
+model = YOLO('yolov8x.pt')  # yolov8n/s/m/l/x - x is the largest
+
+# Ensure 'val' key in data.yaml and correct path to validation images
+model.train(data='/content/drive/MyDrive/currency(yolo)/data.yaml',
+            epochs=50,
+            imgsz=640,
+            batch=2,
+            workers=1,
+            rect=True)  # uses rectangular training, helps skip bad images
+metrics = model.val()
+
+model.predict(
+    source="/content/drive/MyDrive/object/",
+    conf=0.5,
+    save=True,
+    save_txt=True,
+    save_conf=True
+)
+import os
+from IPython.display import Image, display
+
+base_path = "/content/runs/detect"
+all_folders = sorted(os.listdir(base_path))
+latest_folder = os.path.join(base_path, all_folders[-1])
+print(f"Showing predictions from: {latest_folder}")
+
+for file in os.listdir(latest_folder):
+    if file.endswith((".jpg", ".png")):
+        display(Image(filename=os.path.join(latest_folder, file)))
