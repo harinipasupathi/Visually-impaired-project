@@ -1,0 +1,174 @@
+/* Global Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: url('C:\Users\HARINI PASUPATHI\Documents\map-track\public\op.png') no-repeat center center fixed; /* ✅ React public path */
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+    color: white; /* ✅ Global white font */
+  }
+  
+  /* Blurred overlay */
+  body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(8px);
+    background-color: rgba(28, 28, 45, 0.5);
+    z-index: 0;
+  }
+  
+  /* Container */
+  .container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Form Box */
+  .form-box {
+    background-color: rgba(45, 45, 74, 0.85);
+    border-radius: 12px;
+    padding: 30px;
+    width: 400px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.6s ease-in-out; /* ✅ smooth fade */
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* Navigation Bar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  /* Logo Container */
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .logo-img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .logo-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  /* Nav Links */
+  .nav-links a {
+    margin-left: 20px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #ffffff;
+  }
+  
+  .nav-links a:hover {
+    color: #7abaff;
+  }
+  
+  /* Form Section */
+  .form-section {
+    text-align: center;
+  }
+  
+  .small-text {
+    font-size: 12px;
+    color: #cccccc; /* slightly gray for contrast */
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin: 10px 0;
+    color: white;
+  }
+  
+  .blue-dot {
+    color: #007BFF;
+  }
+  
+  .member-text {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  
+  .member-text a {
+    color: #007BFF;
+    text-decoration: none;
+  }
+  
+  .member-text a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Input Fields */
+  .input-group input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #3E3E5A;
+    border-radius: 6px;
+    background-color: #3E3E5A;
+    color: #ffffff;
+  }
+  
+  .input-group input:focus {
+    border-color: #007BFF;
+    outline: none;
+  }
+  
+  /* Buttons */
+  .buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .btn-primary {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-secondary {
+    background-color: #5A5A72;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #4b4b65;
+  }
